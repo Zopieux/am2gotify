@@ -1,0 +1,10 @@
+[Unit]
+Description = Alertmanager to Gotify bridge
+
+[Service]
+ExecStart = /usr/bin/am2gotify \
+    --url URL \
+    --token TOKEN \
+    --resolved ignore
+# Socket activation will start when needed.
+Restart=never

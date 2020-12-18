@@ -1,0 +1,8 @@
+[Unit]
+Description = Socket activation for Alertmanager to Gotify bridge
+
+[Socket]
+ListenStream = 8080
+
+[Install]
+WantedBy = sockets.target
