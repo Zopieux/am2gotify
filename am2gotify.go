@@ -22,11 +22,11 @@ import (
 )
 
 var (
-	exitAfter    = flag.Int("exitafter", 0, "How long to wait before quiting after handling a request; 0 to stay up forever")
 	gotifyUrl    = flag.String("url", "", "Gotify server URL")
 	gotifyToken  = flag.String("token", "", "Gotify app secret token")
-	gotifyCToken = flag.String("ctoken", "", "Gotify client secret token for deletes")
+	gotifyCToken = flag.String("ctoken", "", "Gotify client secret token for --resolved=delete")
 	resolved     = flag.String("resolved", "notify", "Behavior for resolved alerts; either 'notify' (default), 'ignore' or 'delete")
+	exitAfter    = flag.Int("exitafter", 0, "How long to wait before quiting after handling a request; 0 to stay up forever")
 
 	gotifyClient *client.GotifyREST
 	appId        int64 = 0
@@ -137,12 +137,12 @@ func main() {
 
 	u, err := url.Parse(*gotifyUrl)
 	if err != nil {
-		log.Panicf("invalid --gotify URL: %s", *gotifyUrl)
+		log.Panicf("invalid --url: %s", *gotifyUrl)
 	}
 	gotifyClient = gotify.NewClient(u, &http.Client{Timeout: 10 * time.Second})
 	versionResponse, err := gotifyClient.Version.GetVersion(nil)
 	if err != nil {
-		log.Fatal("Could not request version ", err)
+		log.Fatal("could not request version ", err)
 		return
 	}
 	version := versionResponse.Payload

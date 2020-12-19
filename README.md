@@ -8,7 +8,8 @@ webhooks and forwarding them as [Gotify](https://gotify.net/) notifications.
 ### Usage
 
 1. Register an *Application* in your Gotify server and note its token.
-1. Optionally, if you want to auto-delete resolved alerts (`--resolved=delete`), also register a *Client* in Gotify and note its token
+1. Optionally, if you want to auto-delete resolved alerts (`--resolved=delete`), also register a *Client* in Gotify 
+   and note its token.
 
 ```
 $ am2gotify   --url       https://url/to/gotify/server \
